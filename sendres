@@ -1,0 +1,25 @@
+#!/bin/bash
+# A shell script to quickly send an email to someone with an attachment using the smtp protocol
+# You need to install `mailutils` and configure ssmtp before you can use this script
+# To install mailutils :  `sudo apt-get install mailutils`
+# To configure ssmtp: 
+#	- If not installed, Install ssmtp : `sudo apt-get install ssmtp`
+#	- Edit the config file : `sudo nano /etc/ssmtp/ssmtp.conf`
+#	  Append the following text: 
+#root=username@gmail.com
+#mailhub=smtp.gmail.com:465
+#rewriteDomain=gmail.com
+#AuthUser=your_username
+#AuthPass=your_password (if you have 2 step authentication, you need an app password)
+#FromLineOverride=YES
+#UseTLS=YES 
+#	- Save and exit.
+# Send your resume to the person '$1' email address specified '$2' with the template message.
+
+echo "Hi $1, The content of your email goes here!" | mail -s "Hi $1! Here is my resume." -a the/location/of/your/file/here.pdf $2
+
+# Here $1 and $2 are the name of the person and the email address respectively.
+#
+# Sample usage:
+# sendres Gaurav email_address@gmail.com
+
